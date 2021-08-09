@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.collections.FXCollections?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import java.lang.*?>
+<AnchorPane style="-fx-font-family: Arial;" xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="view.CustomerController"
+            prefHeight="400.0" prefWidth="600.0">
+    <TitledPane text="Profile Info" collapsible="false" AnchorPane.LeftAnchor="20" AnchorPane.topAnchor="40">
+        <GridPane hgap="10" vgap="10">
+            <Label GridPane.rowIndex="1" GridPane.columnIndex="1" text="Username"/>
+            <Label GridPane.rowIndex="2" GridPane.columnIndex="1" text="Password"/>
+            <Label GridPane.rowIndex="3" GridPane.columnIndex="1" text="First Name"/>
+            <Label GridPane.rowIndex="4" GridPane.columnIndex="1" text="Last Name"/>
+            <Label GridPane.rowIndex="5" GridPane.columnIndex="1" text="Email"/>
+            <Label GridPane.rowIndex="6" GridPane.columnIndex="1" text="Phone"/>
+            <Label GridPane.rowIndex="7" GridPane.columnIndex="1" text="Shipping Address"/>
+            <Label GridPane.rowIndex="8" GridPane.columnIndex="1" text="Type"/>
+            <TextField GridPane.rowIndex="1" GridPane.columnIndex="2" fx:id="username"
+                       editable="false"/>
+            <PasswordField GridPane.rowIndex="2" GridPane.columnIndex="2" fx:id="password"/>
+            <TextField GridPane.rowIndex="3" GridPane.columnIndex="2" fx:id="firstName"/>
+            <TextField GridPane.rowIndex="4" GridPane.columnIndex="2" fx:id="lastName"/>
+            <TextField GridPane.rowIndex="5" GridPane.columnIndex="2" fx:id="email"/>
+            <TextField GridPane.rowIndex="6" GridPane.columnIndex="2" fx:id="phone"/>
+            <TextField GridPane.rowIndex="7" GridPane.columnIndex="2" fx:id="shippingAddress"/>
+            <TextField GridPane.rowIndex="8" GridPane.columnIndex="2" editable="false" fx:id="type"/>
+            <HBox GridPane.rowIndex="9"
+                  GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.halignment="CENTER"
+                  alignment="CENTER" spacing="10">
+                <Button onAction="#updateInfo" fx:id="updateInfoButton" text="Update" minWidth="100"/>
+            </HBox>
+        </GridPane>
+    </TitledPane>
+    <TitledPane text="Books" collapsible="false" AnchorPane.topAnchor="20" AnchorPane.rightAnchor="30">
+        <VBox spacing="20" alignment="CENTER">
+            <TitledPane text="Book Search" collapsible="false" AnchorPane.LeftAnchor="20"
+                        AnchorPane.topAnchor="30">
+                <HBox spacing="10" alignment="CENTER">
+                    <ComboBox fx:id="searchMethod" minWidth="150">
+                        <items>
+                            <FXCollections fx:factory="observableArrayList">
+                                <String fx:value="ISBN"/>
+                                <String fx:value="Title"/>
+                                <String fx:value="Publisher"/>
+                                <String fx:value="Author"/>
+                                <String fx:value="Category"/>
+                            </FXCollections>
+                        </items>
+                    </ComboBox>
+                    <TextField fx:id="bookSearch" alignment="CENTER_RIGHT"/>
+                    <Button onAction="#searchBooks" minWidth="100" fx:id="searchButton" text="search"/>
+                    <Button onAction="#clearSearchResults" text="clear"/>
+                </HBox>
+            </TitledPane>
+            <TableView fx:id="searchResultsTable">
+                <placeholder>
+                    <Label text="No books found"/>
+                </placeholder>
+                <columns>
+                    <TableColumn fx:id="isbnCol" text="ISBN" minWidth="140"/>
+                    <TableColumn fx:id="titleCol" text="Title" minWidth="140"/>
+                    <TableColumn fx:id="authorCol" text="Author" minWidth="140"/>
+                    <TableColumn fx:id="priceCol" text="Price" minWidth="70"/>
+                </columns>
+            </TableView>
+            <Button text="Add to cart" fx:id="addToCartButton" onAction="#addToCart"/>
+        </VBox>
+    </TitledPane>
+    <TitledPane text="Shopping Cart" collapsible="false" AnchorPane.topAnchor="30" AnchorPane.rightAnchor="570">
+        <VBox spacing="20" alignment="CENTER">
+            <TableView fx:id="cartTable">
+                <placeholder>
+                    <Label text="No items in the cart"/>
+                </placeholder>
+                <columns>
+                    <TableColumn fx:id="isbnCartCol" text="ISBN" minWidth="140"/>
+                    <TableColumn fx:id="titleCartCol" text="Title" minWidth="140"/>
+                    <TableColumn fx:id="authorCartCol" text="Author" minWidth="140"/>
+                    <TableColumn fx:id="priceCartCol" text="Price" minWidth="70"/>
+                </columns>
+            </TableView>
+            <HBox spacing="30" alignment="CENTER">
+                <Button text="remove from cart" fx:id="removeFromCartButton" onAction="#removeFromCart"/>
+                <Button text="Checkout" fx:id="checkoutButton" onAction="#checkout"/>
+                <Label text="Total price"/>
+                <TextField fx:id="totalPrice" editable="false"/>
+            </HBox>
+        </VBox>
+    </TitledPane>
+    <Button text="Log out" style="-fx-font-size: 18;" fx:id="logOutButton" onAction="#logOut" AnchorPane.leftAnchor="140" AnchorPane.bottomAnchor="350"/>
+
+
+</AnchorPane>
